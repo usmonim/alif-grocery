@@ -19,6 +19,31 @@ class ActionOne:
         f.close()
 
 
+class ActionTwo:
+    def __init__(self, name, change, data_array): #constructor
+        self.data_array = data_array
+        self.name = name
+        self.change = change
+
+    def changing(self):
+        f = open(self.name, "w")
+        # f.seek(0)
+        temp_data = []
+        for i in range(len(self.data_array)):
+            s = self.data_array[i]
+            #разделяю стринг по " - " чтобы отделить нименование и числа чтоб позже сравнивать наименование с записью который хотим изменить
+            temp_name = s.split(" - ")
+            if len(s) > 0:
+                #если в списке нашелся продукт который мы хотим удалить то мы просто пропускаем его а если не совпало то пишем наименование и число обратно в наш файл
+                if temp_name[0].lower() == self.change.lower():
+                    nomination = input("Введите новое наименование: ")
+                    value = input("Введите новое значение наименования: ")
+                    f.write(nomination + " - " + value + "\n")
+                else:
+                    f.write(temp_name[0] + " - " + temp_name[1] + "\n")
+        f.close()
+
+
 class ActionThree:
     def __init__(self, name, deletion, data_array): #constructor
         self.data_array = data_array
@@ -74,8 +99,6 @@ with open(file_name, 'r+') as file:
     data = [line.strip() for line in file] #take all data from opened file
 
 
-
-
 #if user enter 1 in command line argument then we perform action "Добавить в список/Add to list"
 if int(action) == 1:
 #Ask user to enter what he want yo add to the list
@@ -91,10 +114,15 @@ if int(action) == 1:
 
 
 if int(action) == 2:
-    print("2 Изменить запись в списке: ")
-    # change = input("Введите Наименование записи которую вы хотите изменить(Например:Огурцы)")
-    # data.append(change)
-    print(len(data))
+    print("2 Изменить запись в списке")
+    if len(data) == 0:
+        print("Список Пуст")
+
+    else:
+        to_change = input("Введите Наименование записи которую вы хотите изменить(Например:Огурцы): ")
+        execute = ActionTwo(file_name, to_change, data)
+        execute.changing()
+        print("Запись успешно изменена")
 
 
 
@@ -112,15 +140,7 @@ if int(action) == 3:
         to_delete = input("Введите позицию которую хотите удалить (Например: Огурцы) :")
         execute = ActionThree(file_name, to_delete, data)
         execute.deleting()
-        # print("Сумма = ", execute.calculate_sum())
-
-
-
-
-
-
-
-
+        print("Удалено!")
 
 #done
 if int(action) == 4:
