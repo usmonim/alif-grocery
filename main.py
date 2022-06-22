@@ -1,8 +1,23 @@
 import re
 import sys
 
-# print ("The script has the name %s" % (sys.argv[2]))
+
+#A list which will store the data from file
 data = []
 
+#Getting filename and the action number from command line arguments
 file_name = sys.argv[1]
 action = sys.argv[2];
+
+with open(file_name, 'r+') as file:
+    data = [line.strip() for line in file] #take all data line by line.
+
+# print(data[1])
+
+#if user enter 1 in command line argument then we perform action "Добавить в список/Add to list"
+if int(action) == 1:
+#Ask user to enter what he want yo add to list
+    add = input("1 Добавить в список: ")
+    execute = ActionOne(file_name, add)
+    execute.adding()
+    # data.append(add)
