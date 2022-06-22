@@ -4,9 +4,9 @@ import sys
 class ActionOne:
     def __init__(self, name, addition): #constructor
         # self.data_array = data_array
-        self.name = name
-        self.addition = addition
-
+        self.name = name #Имя файла котррый мы откроем в методе adding
+        self.addition = addition # новая запись
+    #Основная часть где мы добавляем запись введеный  пользователем
     def adding(self):
         f = open(self.name, 'a+')
         f.seek(0)
@@ -17,6 +17,22 @@ class ActionOne:
         # Append text at the end of file
         f.write(self.addition)
         f.close()
+
+class ActionFour:
+    def __init__(self, data_array):
+        self.data_array = data_array
+        # self.init_file = init_file
+
+    def calculate_sum(self):
+        #Лист data хрнит в себе и текст и цыфры записей. Тут с помощью модуля regular expression и паттерна который будет искать все числа в тексте и после того как мы извлекли цыфры я добавляю их в новый лист в котором только int
+        temp_int = []
+        pattern = "[0-9]+.?[0-9]*"
+        print(*data, sep="\n")
+        for i in range(len(self.data_array)):
+            sample = self.data_array[i]
+            temp_int.append(int(re.findall(pattern, sample)[0])) #Находим все цифры в тексте из data[0], data[1], data[2].......... После cast to int and append to new list
+        #суммирую все цифры в листе и return
+        return sum(temp_int)
 
 
 #A list which will store the data from file
@@ -37,3 +53,45 @@ if int(action) == 1:
     execute.adding()
     # print(data)
     # data.append(add)
+
+
+
+
+
+#done
+if int(action) == 2:
+    print("2 Изменить запись в списке: ")
+    add = input("Введите какую запись вы хотите изменить(Например:")
+    data.append(add)
+
+
+
+
+
+
+
+#Not done yet
+if int(action) == 3:
+    print("3 Удалить из списка")
+    add = input("Введите позицию которую хотите удалить (Например: Огурцы) :")
+    position_length = len(add)
+    print(position_length)
+
+    for i in range(len(data)):
+        sample = data[i]
+        if sample[0:position_length] == add:
+            print(sample)
+            del data[i]
+
+
+
+
+
+
+
+#done
+if int(action) == 4:
+    print("4 Вычесть общую сумму:")
+    # Передаем лист со всеми записями в класс ActionFour
+    execute = ActionFour(data)
+    print("Сумма = ", execute.calculate_sum())
