@@ -3,5 +3,3 @@ Tomatoes - 40
 Butter - 40
 Ketchup - 20
 Soda - 10
-
-Laptop - 300
