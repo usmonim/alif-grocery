@@ -109,10 +109,6 @@ if int(action) == 1:
     # print(data)
     # data.append(add)
 
-
-
-
-
 if int(action) == 2:
     print("2 Изменить запись в списке")
     if len(data) == 0:
@@ -123,13 +119,6 @@ if int(action) == 2:
         execute = ActionTwo(file_name, to_change, data)
         execute.changing()
         print("Запись успешно изменена")
-
-
-
-
-
-
-
 #done
 if int(action) == 3:
     print("3 Удалить из списка")
