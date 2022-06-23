@@ -58,17 +58,10 @@ class ActionThree:
             s = self.data_array[i]
             #разделяю стринг по " - " чтобы отделить нименование и числа чтоб позже сравнивать наименование с записью который хотим удалить
             temp_name = s.split(" - ")
-            # print(temp_name[0].lower())
-            # print(temp_name[1])
-            # temp_data.append(temp_name[0])
             if len(s) > 0:
                 #если в списке нашелся продукт который мы хотим удалить то мы просто пропускаем его а если не совпало то пишем наименование и число обратно в наш файл
                 if temp_name[0].lower() != self.deletion.lower():
                     f.write(temp_name[0] + " - " + temp_name[1] + "\n")
-
-
-            # print(temp_name)
-        # print(temp_data)
         f.close()
 
 class ActionFour:
@@ -106,8 +99,6 @@ if int(action) == 1:
     execute = ActionOne(file_name, add)
     execute.adding()
     print(add, " - Добавлен в список.")
-    # print(data)
-    # data.append(add)
 
 if int(action) == 2:
     print("2 Изменить запись в списке")
