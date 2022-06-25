@@ -132,3 +132,6 @@ if int(action) == 4:
     else:
         execute = ActionFour(data)
         print("Сумма = ", execute.calculate_sum())
+        
+else:
+    print("Wrong action! Try again")
